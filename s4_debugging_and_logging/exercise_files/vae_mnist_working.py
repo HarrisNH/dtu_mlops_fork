@@ -2,12 +2,16 @@
 
 A simple implementation of Gaussian MLP Encoder and Decoder trained on MNIST
 """
+def divide(a, b):
+    return a / b
+
+divide(1, 0)
 
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
 from torch.optim import Adam
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader,TensorDataset
 from torchvision.datasets import MNIST
 from torchvision.utils import save_image
 
@@ -24,10 +28,13 @@ epochs = 5
 
 
 # Data loading
-mnist_transform = transforms.Compose([transforms.ToTensor()])
+##mnist_transform = transforms.Compose([transforms.ToTensor()]) Unneccesary as we convert
 
-train_dataset = MNIST(dataset_path, transform=mnist_transform, train=True, download=True)
-test_dataset = MNIST(dataset_path, transform=mnist_transform, train=False, download=True)
+train_dataset = MNIST(dataset_path, train=True, download=True)
+train_dataset = TensorDataset(train_dataset.data.float()/255,train_dataset.targets)
+
+test_dataset = MNIST(dataset_path, train=False, download=True)
+test_dataset = TensorDataset(test_dataset.data.float()/255,test_dataset.targets)
 
 train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False)
@@ -72,7 +79,7 @@ class Decoder(nn.Module):
     def __init__(self, latent_dim, hidden_dim, output_dim) -> None:
         super().__init__()
         self.FC_hidden = nn.Linear(latent_dim, hidden_dim)
-        self.FC_output = nn.Linear(hidden_dim, output_dim)
+        self.FC_output = nn.Linear(latent_dim, output_dim)
 
     def forward(self, x):
         """Forward pass."""

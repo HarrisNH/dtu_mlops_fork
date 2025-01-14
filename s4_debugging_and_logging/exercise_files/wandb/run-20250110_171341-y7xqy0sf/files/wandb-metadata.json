@@ -1,0 +1,14 @@
+{
+  "os":  "macOS-15.1.1-arm64-arm-64bit",
+  "python":  "CPython 3.11.11",
+  "startedAt":  "2025-01-10T17:13:42.117134Z",
+  "program":  "/Users/harrishadzimahovic/Desktop/DTU/5/Machine Learning Operations/MLOPS/MNIST_corrupt/main.py",
+  "git":  {
+    "remote":  "https://github.com/HarrisNH/dtu_mlops_fork.git",
+    "commit":  "c052ca2f6d7d78ce4632722735fd77b21c1406bf"
+  },
+  "email":  "s224397@student.dtu.dk",
+  "root":  "/Users/harrishadzimahovic/Desktop/DTU/5/Machine Learning Operations/dtu_mlops_fork/s4_debugging_and_logging/exercise_files",
+  "host":  "Harriss-MacBook-Air-2.local",
+  "executable":  "/Users/harrishadzimahovic/miniconda3/envs/fresh_env/bin/python"
+}
